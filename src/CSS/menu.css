@@ -1,0 +1,24 @@
+@import url(http://localhost:5000/static/css/menu.css);
+li.menu > ul * {
+    text-align: center;
+    list-style-type: none;
+    background-color: inherit;
+    color: black;
+}
+li.menu > ul > *::before {
+    content: "-> ";
+    color: grey;
+}
+nav li.menu span:hover {
+    cursor: pointer;
+    text-shadow: black 0px 10px 5px;
+    color:grey;
+}
+li.menu > ul  {
+    float: right;
+    text-align:left;
+    font-size: 15px;
+    font-weight: bold;
+    background-color: white;
+    display: none;
+}
