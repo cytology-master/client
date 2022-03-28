@@ -18,7 +18,7 @@ export default class Dashboard extends Component {
     }
     componentDidMount() {
         if(this.state.gotInfo) return
-        $.getJSON('http://localhost:5000/users/'+encodeURIComponent(localStorage.getItem('uid')))
+        $.getJSON('https://cytology-server.herokuapp.com/users/'+encodeURIComponent(localStorage.getItem('uid')))
         .done(data => {
             this.setState({
                 gotInfo: true,

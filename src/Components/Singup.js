@@ -22,7 +22,7 @@ class Singup extends Component {
         e.preventDefault()
         var form = this.forms.singUp.current
         var json = $(form).serialize()
-        $.post("http://localhost:5000/users/singup", json)
+        $.post("https://cytology-server.herokuapp.com/users/singup", json)
             .done((data) => {
                 localStorage.setItem('uid', JSON.parse(data).insertedId)
                 this.setState({loggedIn: true})
@@ -36,7 +36,7 @@ class Singup extends Component {
         e.preventDefault()
         var form = this.forms.logIn.current
         var json = $(form).serialize()
-        $.post("http://localhost:5000/users/login", json)
+        $.post("https://cytology-server.herokuapp.com/users/login", json)
             .done((data) => {
                 localStorage.setItem('uid', JSON.parse(data)._id)
                 this.setState({loggedIn: true})
@@ -50,7 +50,7 @@ class Singup extends Component {
         return <div id="form-content">
             {this.state.loggedIn ? <Navigate to="/users/" replace={true} /> :<div id="container">
             <div className="form-container sign-up-container">
-                <form action="http://localhost:5000/nojs/srv/singup" ref={this.forms.singUp} method="post" onSubmit={this.singUp}>
+                <form action="https://cytology-server.herokuapp.com/nojs/srv/singup" ref={this.forms.singUp} method="post" onSubmit={this.singUp}>
                     <h1>Create Account</h1>
                     <div className="social-container">
                         {/* <a href="#"><i className="fa-brands fa-facebook"></i></a>
@@ -65,7 +65,7 @@ class Singup extends Component {
                 </form>
             </div>
             <div className="form-container sign-in-container">
-                <form action="http://localhost:5000/nojs/srv/login" ref={this.forms.logIn} onSubmit={this.logIn} method="post">
+                <form action="https://cytology-server.herokuapp.com/nojs/srv/login" ref={this.forms.logIn} onSubmit={this.logIn} method="post">
                     <h1>Sign in</h1>
                     <div className="social-container">
                         {/* <a href="#"><i className="fa-brands fa-facebook"></i></a>
