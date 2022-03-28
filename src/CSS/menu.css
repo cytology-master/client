@@ -1,4 +1,4 @@
-@import url(http://localhost:5000/static/css/menu.css);
+@import url(https://cytology-server.herokuapp.com/static/css/menu.css);
 li.menu > ul * {
     text-align: center;
     list-style-type: none;
