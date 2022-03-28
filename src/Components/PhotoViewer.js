@@ -50,8 +50,8 @@ export default class PhotoViewer extends Component {
             <div id="photo-viewer"><img ref={this.viewer.main.ref} src={this.state.request} alt={this.state.alt} onLoad={() => {
             $(this.viewer.main.ref.current).fadeIn('slow')
         } } /></div><div id="thumbnails">
-                <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/1-content.png" ref={this.viewer.organells.ref} className="thumb active" title="Cell organells" onClick={this.viewer.organells.clicker}><img src="http://localhost:5000/static/images/photo-viewer/1.jpg" alt="Cell organells" /></a>
-                <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/2-content.png" ref={this.viewer.divide.ref} className="thumb" title="Cell division" onClick={this.viewer.divide.clicker}><img src="http://localhost:5000/static/images/photo-viewer/2.jpg" alt="Cell division" /></a>
+                <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/1-content.png" ref={this.viewer.organells.ref} className="thumb active" title="Cell organells" onClick={this.viewer.organells.clicker}><img src="https://cytology-server.herokuapp.com/static/images/photo-viewer/1.jpg" alt="Cell organells" /></a>
+                <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/2-content.png" ref={this.viewer.divide.ref} className="thumb" title="Cell division" onClick={this.viewer.divide.clicker}><img src="https://cytology-server.herokuapp.com/static/images/photo-viewer/2.jpg" alt="Cell division" /></a>
             </div>
         </div>
     }
