@@ -7,32 +7,44 @@ export default class PhotoViewer extends Component {
         super(props)
         this.state = {
             request: "https://cytology-server.herokuapp.com/static/images/photo-viewer/1-content.png",
-            alt: "Cell organells",        
+            alt: "Cell organells",
+            data: {
+                name: "Cell organells",
+                price: 400.98,
+                symbol: "₽"
+            }
         }
 
         this.changePicture = this.changePicture.bind(this)
+        this.update = this.update.bind(this)
+
+        this.ids = [
+            "6242b25dc55db8de708340f0",
+            "6242b25dc55db8de708340f0"
+        ]
 
         var refs = {
             organells: React.createRef(),
             divide: React.createRef(),
-            main: React.createRef()
+            main: React.createRef(),
+            data: React.createRef()
         }
         this.viewer = {
             organells: {
                 ref: refs.organells,
-                clicker: (e) => this.changePicture(e, refs.organells.current)
+                clicker: (e) => this.changePicture(e, refs.organells.current, 0)
             },
             divide: {
                 ref: refs.divide,
-                clicker: (e) => this.changePicture(e, refs.divide.current)
+                clicker: (e) => this.changePicture(e, refs.divide.current, 1)
             },
             main: {
                 ref: refs.main
-            }
+            },
         }
         this.$frame = $("#photo-viewer")
     }
-    changePicture(e, el) {
+    changePicture(e, el, i) {
         var src = el.href
 
         e.preventDefault()
@@ -45,11 +57,31 @@ export default class PhotoViewer extends Component {
             })
         })
     }
+    update(i) {
+        $.getJSON("https://cytology-server.herokuapp.com/lessons/"+encodeURIComponent(this.ids[i]))
+            .done(data => {
+                this.setState({
+                    name: data.name,
+                    price: data.price,
+                    symbol: data.is_dollars ? "$" : "₽"
+                })
+            })
+    }
     render() {
         return <div>
-            <div id="photo-viewer"><img ref={this.viewer.main.ref} src={this.state.request} alt={this.state.alt} onLoad={() => {
-            $(this.viewer.main.ref.current).fadeIn('slow')
-        } } /></div><div id="thumbnails">
+            <div id="photo-viewer">
+                <img ref={this.viewer.main.ref} src={this.state.request} alt={this.state.alt} onLoad={() => {
+                    $(this.viewer.main.ref.current).fadeIn('slow')
+                } } />
+                <div className="data">
+                    <table>
+                        <tr>
+                            <td>{this.state.data.name}</td>
+                            <td>{this.state.data.price}{this.state.data.symbol}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div><div id="thumbnails">
                 <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/1-content.png" ref={this.viewer.organells.ref} className="thumb active" title="Cell organells" onClick={this.viewer.organells.clicker}><img src="https://cytology-server.herokuapp.com/static/images/photo-viewer/1.jpg" alt="Cell organells" /></a>
                 <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/2-content.png" ref={this.viewer.divide.ref} className="thumb" title="Cell division" onClick={this.viewer.divide.clicker}><img src="https://cytology-server.herokuapp.com/static/images/photo-viewer/2.jpg" alt="Cell division" /></a>
             </div>

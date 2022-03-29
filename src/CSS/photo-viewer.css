@@ -1,6 +1,9 @@
 a.thumb.active {
     opacity: 0.5;
 }
+#photo-viewer .data {
+    float: right;
+}
 a.thumb {
     margin:5px;
 }
