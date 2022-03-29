@@ -42,7 +42,7 @@ export default class PhotoViewer extends Component {
                 ref: refs.main
             },
         }
-        this.$frame = $("#photo-viewer")
+        this.$frame = $(".photo-viewer")
     }
     changePicture(e, el, i) {
         var src = el.href
@@ -53,7 +53,8 @@ export default class PhotoViewer extends Component {
             $(el).addClass('active')
             this.setState({
                 request: src,
-                alt: el.title || ''
+                alt: el.title || '',
+
             })
         })
     }
@@ -68,20 +69,35 @@ export default class PhotoViewer extends Component {
             })
     }
     render() {
-        return <div>
-            <div id="photo-viewer">
-                <img ref={this.viewer.main.ref} src={this.state.request} alt={this.state.alt} onLoad={() => {
-                    $(this.viewer.main.ref.current).fadeIn('slow')
-                } } />
-                <div className="data">
-                    <table>
+        return <div className="photo-container">
+            <div className="photo-viewer">
+                <table>
+                    <tbody>
                         <tr>
-                            <td>{this.state.data.name}</td>
-                            <td>{this.state.data.price}{this.state.data.symbol}</td>
+                            <td className="data"><img ref={this.viewer.main.ref} src={this.state.request} alt={this.state.alt} onLoad={() => {
+                                $(this.viewer.main.ref.current).fadeIn('slow')
+                            } } /></td>
+                            <td className="data price">
+                                <table>
+                                    <tr>
+                                        <td>{this.state.data.name}</td>
+                                        <td className="space"></td>
+                                        <td className="price">{this.state.data.price}{this.state.data.symbol}</td>
+                                    </tr>
+                                    <tr>
+                                        <td className="offer">sale</td>
+                                        <td className="space"></td>
+                                        <td className="discount">100%</td>
+                                    </tr>
+                                </table>
+                                <br/>
+                                <div className="button-container"><button>Buy</button></div>
+                            </td>
                         </tr>
-                    </table>
-                </div>
-            </div><div id="thumbnails">
+                    </tbody>
+                </table>
+            </div>
+            <div className="thumbnails">
                 <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/1-content.png" ref={this.viewer.organells.ref} className="thumb active" title="Cell organells" onClick={this.viewer.organells.clicker}><img src="https://cytology-server.herokuapp.com/static/images/photo-viewer/1.jpg" alt="Cell organells" /></a>
                 <a href="https://cytology-server.herokuapp.com/static/images/photo-viewer/2-content.png" ref={this.viewer.divide.ref} className="thumb" title="Cell division" onClick={this.viewer.divide.clicker}><img src="https://cytology-server.herokuapp.com/static/images/photo-viewer/2.jpg" alt="Cell division" /></a>
             </div>

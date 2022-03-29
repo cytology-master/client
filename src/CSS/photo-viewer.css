@@ -1,9 +1,77 @@
+@import url(https://allfont.ru/allfont.css?fonts=rodchenkoctt);
+
 a.thumb.active {
-    opacity: 0.5;
-}
-#photo-viewer .data {
-    float: right;
+    opacity: .65;
 }
 a.thumb {
     margin:5px;
+}
+.photo-viewer .data {
+    background: #fff;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .4), 0 10px 10px rgba(0, 0, 0, .2);
+    width: 40%;
+}
+.photo-container {
+    background: rgba(207, 207, 207, 0.616);
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0, 0, 0, .4), 0 10px 10px rgba(0, 0, 0, .2);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: 80%;
+}
+.photo-viewer table {
+    border-collapse: collapse;
+}
+
+.photo-viewer td.data {
+    max-height: 100%;
+}
+
+.thumbnails {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background-color:rgba(117, 117, 117, 0.986);
+}
+.photo-viewer td.data td {
+    font-size: xx-large;
+    padding: 5px;
+    border-bottom: 1px solid black;
+}
+.photo-viewer td.data td.offer {
+    text-transform: uppercase;
+    font-family: 'RodchenkoCTT';
+    color: red;
+}
+
+.photo-viewer td.data td.discount {
+    color: rgb(255, 115, 0);
+}
+
+
+.photo-viewer td.data td:last-child {
+    border-bottom: none;
+}
+.photo-viewer td.data td.price {
+    color:magenta;
+}
+.photo-viewer td.data button {
+    display: flex;
+    font-size: xx-large;
+    width:30%;
+    justify-content: center;
+}
+.photo-viewer td.data tr {
+    border: 1px solid gray;
+}
+.photo-viewer td.data.price {
+    position: inline-block;
+    vertical-align: top;
+    text-align: left;
+}
+td.space {
+    width:50%;
+    border: none !important;
 }
